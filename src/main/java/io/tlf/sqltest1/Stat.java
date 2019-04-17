@@ -32,11 +32,12 @@ public class Stat implements SQLData {
     private Array detailsArray0;
 
     public void setupArrays(Connection con) throws SQLException {
+        System.out.println("Setting up range arrays");
         for (Range r : ranges) {
             r.setupArrays(con);
         }
+        System.out.println("Building ranges array");
         detailsArray0 = con.createArrayOf("RANGE", ranges);
-        
     }
 
     public void deallocArrays() throws SQLException {
@@ -44,7 +45,6 @@ public class Stat implements SQLData {
         for (Range r : ranges) {
             r.deallocArrays();
         }
-        //detailsArray2.free();
     }
 
     @Override
@@ -62,6 +62,7 @@ public class Stat implements SQLData {
 
     @Override
     public void writeSQL(SQLOutput stream) throws SQLException {
+        System.out.println("Writing stat");
         stream.writeString(name);
         stream.writeString(display);
         stream.writeLong(xp);

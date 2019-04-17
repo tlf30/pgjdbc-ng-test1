@@ -17,6 +17,11 @@
             <artifactId>pgjdbc-ng</artifactId>
             <version>0.9-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.impossibl.pgjdbc-ng.tools</groupId>
+            <artifactId>udt-gen</artifactId>
+            <version>0.9-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
