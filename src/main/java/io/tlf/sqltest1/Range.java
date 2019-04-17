@@ -46,7 +46,7 @@ public class Range implements SQLData {
         min = stream.readLong();
         max = stream.readLong();
         this.type = stream.readString();
-        detailsArray0 = stream.readArray();
+        constructors = stream.readObject(Integer[].class);
     }
 
     @Override

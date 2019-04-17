@@ -61,7 +61,7 @@ public class Stat implements SQLData {
         value = stream.readFloat();
         min = stream.readFloat();
         max = stream.readFloat();
-        detailsArray0 = stream.readArray();
+        ranges = stream.readObject(Range[].class);
         visible = stream.readBoolean();
     }
 
