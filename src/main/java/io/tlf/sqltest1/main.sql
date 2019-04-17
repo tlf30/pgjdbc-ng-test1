@@ -32,13 +32,13 @@ CREATE TABLE users (
 
 ALTER TABLE users OWNER TO test1;
 
-/* create god user */
+/* create test data */
 INSERT INTO users (data) VALUES (
     ROW(
         array[              
-            ROW('a', 'AA', 0, 1.0, 0.0, 1.0, array[ROW(0::BIGINT, 1000::BIGINT, 'io.tlf.outside.framework.stat.StatScale$LinearScale'::VARCHAR, array[1, 0]::INT[])::RANGE], true)::STAT,
-            ROW('b', 'BB', 0, 1.0, 0.0, 1.0, array[ROW(0::BIGINT, 1000::BIGINT, 'io.tlf.outside.framework.stat.StatScale$LinearScale'::VARCHAR, array[1, 0]::INT[])::RANGE], true)::STAT,
-            ROW('c', 'CC', 0, 1.0, 0.0, 1.0, array[ROW(0::BIGINT, 1000::BIGINT, 'io.tlf.outside.framework.stat.StatScale$LinearScale'::VARCHAR, array[1, 0]::INT[])::RANGE], true)::STAT
+            ROW('a', 'AA', 0, 1.0, 0.0, 1.0, array[ROW(0::BIGINT, 1000::BIGINT, 'aaa'::VARCHAR, array[1, 0]::INT[])::RANGE], true)::STAT,
+            ROW('b', 'BB', 0, 1.0, 0.0, 1.0, array[ROW(0::BIGINT, 1000::BIGINT, 'bbb'::VARCHAR, array[1, 0]::INT[])::RANGE], true)::STAT,
+            ROW('c', 'CC', 0, 1.0, 0.0, 1.0, array[ROW(0::BIGINT, 1000::BIGINT, 'ccc'::VARCHAR, array[1, 0]::INT[])::RANGE], true)::STAT
         ]  /* stats STAT[]   */
     )
 );
