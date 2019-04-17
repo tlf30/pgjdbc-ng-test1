@@ -28,12 +28,15 @@ public class Range implements SQLData {
     private Array detailsArray0;
 
     public void setupArrays(Connection con) throws SQLException {
-        System.out.println("Allocating range array");
-        detailsArray0 = con.createArrayOf("int4", constructors);
+        if (detailsArray0 == null) {
+            detailsArray0 = con.createArrayOf("int4", constructors);
+        }
     }
 
     public void deallocArrays() throws SQLException {
-        detailsArray0.free();
+        if (detailsArray0 != null) {
+            detailsArray0.free();
+        }
     }
 
     @Override
@@ -43,16 +46,14 @@ public class Range implements SQLData {
         min = stream.readLong();
         max = stream.readLong();
         this.type = stream.readString();
-        constructors = stream.readObject(Integer[].class);
+        detailsArray0 = stream.readArray();
     }
 
     @Override
     public void writeSQL(SQLOutput stream) throws SQLException {
-        System.out.println("Writing range");
         stream.writeLong(min);
         stream.writeLong(max);
         stream.writeString(type);
-        System.out.println("Writing array: " + detailsArray0.getBaseTypeName());
         stream.writeArray(detailsArray0);
     }
 }

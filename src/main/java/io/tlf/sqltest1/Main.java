@@ -73,7 +73,37 @@ public class Main {
                 System.out.println("DID NOT GET DATA");
                 return;
             }
-
+            
+            //Create new chara object
+            data = new Chara();
+            data.stats = new Stat[2];
+            data.stats[0] = new Stat();
+            data.stats[0].display = "A";
+            data.stats[0].max = 100;
+            data.stats[0].min = 0;
+            data.stats[0].name = "a";
+            data.stats[0].value = 0;
+            data.stats[0].visible = false;
+            data.stats[0].xp = 0;
+            data.stats[0].ranges = new Range[1];
+            data.stats[0].ranges[0] = new Range();
+            data.stats[0].ranges[0].constructors = new Integer[] {0, 1};
+            data.stats[0].ranges[0].max = 1;
+            data.stats[0].ranges[0].min = 0;
+            data.stats[1] = new Stat();
+            data.stats[1].display = "B";
+            data.stats[1].max = 100;
+            data.stats[1].min = 0;
+            data.stats[1].name = "b";
+            data.stats[1].value = 0;
+            data.stats[1].visible = false;
+            data.stats[1].xp = 0;
+            data.stats[1].ranges = new Range[1];
+            data.stats[1].ranges[0] = new Range();
+            data.stats[1].ranges[0].constructors = new Integer[] {0, 1};
+            data.stats[1].ranges[0].max = 1;
+            data.stats[1].ranges[0].min = 0;
+            
             System.out.println("Writing test data");
             PreparedStatement pstmt2 = con.prepareStatement("UPDATE users SET data=?");
             data.setupArrays(con);

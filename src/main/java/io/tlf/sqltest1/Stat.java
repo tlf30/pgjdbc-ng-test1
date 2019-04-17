@@ -1,12 +1,13 @@
 package io.tlf.sqltest1;
 
-import com.impossibl.postgres.api.jdbc.PGType;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLData;
 import java.sql.SQLException;
 import java.sql.SQLInput;
 import java.sql.SQLOutput;
+
+import com.impossibl.postgres.api.jdbc.PGType;
 
 /**
  *
@@ -32,18 +33,22 @@ public class Stat implements SQLData {
     private Array detailsArray0;
 
     public void setupArrays(Connection con) throws SQLException {
-        System.out.println("Setting up range arrays");
-        for (Range r : ranges) {
-            r.setupArrays(con);
+        if (detailsArray0 == null) {
+            for (Range r : ranges) {
+                r.setupArrays(con);
+            }
+            detailsArray0 = con.createArrayOf("RANGE", ranges);
         }
-        System.out.println("Building ranges array");
-        detailsArray0 = con.createArrayOf("RANGE", ranges);
     }
 
     public void deallocArrays() throws SQLException {
-        detailsArray0.free();
-        for (Range r : ranges) {
-            r.deallocArrays();
+        if (detailsArray0 != null) {
+            detailsArray0.free();
+        }
+        if (ranges != null) {
+            for (Range r : ranges) {
+                r.deallocArrays();
+            }
         }
     }
 
@@ -56,13 +61,12 @@ public class Stat implements SQLData {
         value = stream.readFloat();
         min = stream.readFloat();
         max = stream.readFloat();
-        ranges = stream.readObject(Range[].class);
+        detailsArray0 = stream.readArray();
         visible = stream.readBoolean();
     }
 
     @Override
     public void writeSQL(SQLOutput stream) throws SQLException {
-        System.out.println("Writing stat");
         stream.writeString(name);
         stream.writeString(display);
         stream.writeLong(xp);
