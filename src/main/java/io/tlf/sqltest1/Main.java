@@ -90,6 +90,7 @@ public class Main {
             data.stats[0].ranges[0].constructors = new Integer[] {0, 1};
             data.stats[0].ranges[0].max = 1;
             data.stats[0].ranges[0].min = 0;
+            data.stats[0].ranges[0].type = "b";
             data.stats[1] = new Stat();
             data.stats[1].display = "B";
             data.stats[1].max = 100;
@@ -103,6 +104,7 @@ public class Main {
             data.stats[1].ranges[0].constructors = new Integer[] {0, 1};
             data.stats[1].ranges[0].max = 1;
             data.stats[1].ranges[0].min = 0;
+            data.stats[1].ranges[0].type = "a";
             
             System.out.println("Writing test data");
             PreparedStatement pstmt2 = con.prepareStatement("UPDATE users SET data=?");
